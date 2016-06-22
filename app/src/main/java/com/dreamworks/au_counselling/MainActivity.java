@@ -19,7 +19,7 @@ import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnRandom,btnVancy,btnUpdate,btnSchedule,btnRank;
+    Button btnRandom,btnVancy,btnUpdate,btnSchedule,btnRank,btnShareApp;
     private InterstitialAd interstitial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,26 @@ public class MainActivity extends AppCompatActivity {
         btnVancy=(Button) findViewById(R.id.btnVacancy);
         btnUpdate=(Button) findViewById(R.id.btnUpdate);
         btnSchedule=(Button) findViewById(R.id.btnSchedule);
+        btnShareApp=(Button) findViewById(R.id.btnShare);
         btnRank=(Button) findViewById(R.id.btnRank);
+
+        btnShareApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try
+                { Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("text/plain");
+                    i.putExtra(Intent.EXTRA_SUBJECT, ""+getString(R.string.app_name));
+                    String sAux = "\nLet me recommend you this application\n\n";
+                    sAux = sAux + "https://play.google.com/store/apps/details?id="+ getPackageName()+" \n\n";
+                    i.putExtra(Intent.EXTRA_TEXT, sAux);
+                    startActivity(Intent.createChooser(i, "Share Via"));
+                }
+                catch(Exception e)
+                { //e.toString();
+                }
+            }
+        });
 
         btnRank.setOnClickListener(new View.OnClickListener() {
             @Override

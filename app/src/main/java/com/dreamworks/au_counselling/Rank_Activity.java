@@ -2,6 +2,7 @@ package com.dreamworks.au_counselling;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -46,13 +48,24 @@ public class Rank_Activity extends AppCompatActivity {
         btnLetter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Rank_Activity.this,WebViewActivity.class));
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url+appNo));
+                startActivity(i);
             }
         });
         webView = (WebView) findViewById(R.id.webView);
 
         webView.getSettings().setJavaScriptEnabled(true);
-
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
+        webView.getSettings().setSupportMultipleWindows(false);
+        webView.getSettings().setSupportZoom(false);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
 
         webView.setWebViewClient(new WebViewClient() {
             ProgressDialog progressDialog;
@@ -136,8 +149,8 @@ public class Rank_Activity extends AppCompatActivity {
 //                Log.i("Response", document.toString());
                 Elements div = document.select("table[bordercolor=#841f27]");
 
-                Elements div1=document.select("button[formaction=https://tnea2016online.annauniv.edu/tnea16_calletter/callletter16_be16.php]");
-                Log.e("Download: ",""+div1.toString());
+//                Elements div1=document.select("button[formaction=https://tnea2016online.annauniv.edu/tnea16_calletter/callletter16_be16.php]");
+//                Log.e("Download: ",""+div1.toString());
 //                Log.i("Response", div.toString());
                 if(div.toString().isEmpty()){
 

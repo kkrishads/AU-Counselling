@@ -83,6 +83,18 @@
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
         android:padding="5dp"/>
+
+            <Button
+                android:id="@+id/btnShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Share This App"
+                android:layout_below="@+id/btnUpdate"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"
+                android:padding="5dp"/>
         </RelativeLayout>
     </ScrollView>
 
