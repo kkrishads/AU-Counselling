@@ -41,6 +41,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_letter_dwn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download Here"/>
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"

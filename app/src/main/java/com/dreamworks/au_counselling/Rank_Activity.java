@@ -1,6 +1,7 @@
 package com.dreamworks.au_counselling;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +29,7 @@ public class Rank_Activity extends AppCompatActivity {
 
     ProgressDialog dialog;
     EditText edtAppNo;
-    Button btnSubmit;
+    Button btnSubmit,btnLetter;
     WebView webView;
     String url = "https://www.annauniv.edu/cgi-bin/tharavarisai/varisai2016.pl?regno=", appNo;
 
@@ -39,7 +41,50 @@ public class Rank_Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         edtAppNo = (EditText) findViewById(R.id.edt_appno);
         btnSubmit = (Button) findViewById(R.id.btnSub);
+        btnLetter=(Button) findViewById(R.id.btn_letter_dwn);
+        btnLetter.setVisibility(View.GONE);
+        btnLetter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Rank_Activity.this,WebViewActivity.class));
+            }
+        });
         webView = (WebView) findViewById(R.id.webView);
+
+        webView.getSettings().setJavaScriptEnabled(true);
+
+
+        webView.setWebViewClient(new WebViewClient() {
+            ProgressDialog progressDialog;
+
+            //If you will not use this method url links are opeen in new brower not in webview
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            //Show loader on url load
+            public void onLoadResource (WebView view, String url) {
+                if (progressDialog == null) {
+                    // in standard case YourActivity.this
+                    progressDialog = new ProgressDialog(Rank_Activity.this);
+                    progressDialog.setMessage("Loading...");
+                    progressDialog.show();
+                }
+            }
+            public void onPageFinished(WebView view, String url) {
+                try{
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                        progressDialog = null;
+                    }
+                }catch(Exception exception){
+                    exception.printStackTrace();
+                }
+            }
+
+        });
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,9 +133,12 @@ public class Rank_Activity extends AppCompatActivity {
         protected String doInBackground(Void... params) {
             try {
                 Document document = (Document) Jsoup.connect(url.concat(appNo)).timeout(90000).get();
-                Log.i("Response", document.toString());
+//                Log.i("Response", document.toString());
                 Elements div = document.select("table[bordercolor=#841f27]");
-                Log.i("Response", div.toString());
+
+                Elements div1=document.select("button[formaction=https://tnea2016online.annauniv.edu/tnea16_calletter/callletter16_be16.php]");
+                Log.e("Download: ",""+div1.toString());
+//                Log.i("Response", div.toString());
                 if(div.toString().isEmpty()){
 
                     return "<center><h2>Invalid Application Number</h2></center>";
@@ -107,9 +155,11 @@ public class Rank_Activity extends AppCompatActivity {
             super.onPostExecute(result);
             dialog.dismiss();
             if (result.equalsIgnoreCase("1")) {
+                btnLetter.setVisibility(View.GONE);
                 Toast.makeText(Rank_Activity.this, "Loading Failed Try Again", Toast.LENGTH_SHORT).show();
                 return;
             }
+            btnLetter.setVisibility(View.VISIBLE);
             webView.loadUrl("about:blank");
             webView.loadData(result, "text/html", "UTF-8");
         }
