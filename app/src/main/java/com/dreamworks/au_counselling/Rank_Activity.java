@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -56,9 +57,6 @@ public class Rank_Activity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
         webView.getSettings().setSupportMultipleWindows(false);
         webView.getSettings().setSupportZoom(false);
@@ -66,6 +64,8 @@ public class Rank_Activity extends AppCompatActivity {
         webView.setHorizontalScrollBarEnabled(false);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setUserAgentString("Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
+
 
         webView.setWebViewClient(new WebViewClient() {
             ProgressDialog progressDialog;
@@ -97,6 +97,8 @@ public class Rank_Activity extends AppCompatActivity {
             }
 
         });
+
+        webView.setWebChromeClient(new WebChromeClient());
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
