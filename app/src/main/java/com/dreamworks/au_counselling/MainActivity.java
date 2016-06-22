@@ -19,7 +19,7 @@ import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnRandom,btnVancy,btnUpdate;
+    Button btnRandom,btnVancy,btnUpdate,btnSchedule,btnRank;
     private InterstitialAd interstitial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,23 @@ public class MainActivity extends AppCompatActivity {
         btnRandom=(Button) findViewById(R.id.btnRandom);
         btnVancy=(Button) findViewById(R.id.btnVacancy);
         btnUpdate=(Button) findViewById(R.id.btnUpdate);
+        btnSchedule=(Button) findViewById(R.id.btnSchedule);
+        btnRank=(Button) findViewById(R.id.btnRank);
+
+        btnRank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Rank_Activity.class));
+            }
+        });
+
+        btnSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Schedule_Activity.class));
+            }
+        });
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

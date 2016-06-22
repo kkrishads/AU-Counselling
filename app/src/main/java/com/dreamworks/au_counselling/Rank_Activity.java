@@ -18,27 +18,24 @@ import com.google.android.gms.ads.AdView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
-import java.util.Iterator;
-
 /**
- * Created by admin on 21/06/2016.
+ * Created by admin on 22/06/2016.
  */
-public class RandomRank_Activity extends AppCompatActivity {
+public class Rank_Activity extends AppCompatActivity {
+
     ProgressDialog dialog;
     EditText edtAppNo;
     Button btnSubmit;
     WebView webView;
-    String url = "https://www.annauniv.edu/cgi-bin/ran/rawdata16captcha.pl?regno=", appNo;
+    String url = "https://www.annauniv.edu/cgi-bin/tharavarisai/varisai2016.pl?regno=", appNo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.random_rank_activity);
-        setTitle("Random Number Enquiry");
+        setTitle("Rank Enquiry");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         edtAppNo = (EditText) findViewById(R.id.edt_appno);
         btnSubmit = (Button) findViewById(R.id.btnSub);
@@ -46,15 +43,15 @@ public class RandomRank_Activity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(MainActivity.isConnectingToInternet(RandomRank_Activity.this)) {
+                if(MainActivity.isConnectingToInternet(Rank_Activity.this)) {
                     if (edtAppNo.getText().toString().trim().length() > 5) {
                         appNo = edtAppNo.getText().toString();
                         new RandomAsync().execute();
                     } else {
-                        Toast.makeText(RandomRank_Activity.this,"Enter Valid Application No",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Rank_Activity.this,"Enter Valid Application No",Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(RandomRank_Activity.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Rank_Activity.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -80,7 +77,7 @@ public class RandomRank_Activity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog = new ProgressDialog(RandomRank_Activity.this);
+            dialog = new ProgressDialog(Rank_Activity.this);
             dialog.setMessage("Loading...");
             dialog.setCancelable(false);
             dialog.setCanceledOnTouchOutside(false);
@@ -110,7 +107,7 @@ public class RandomRank_Activity extends AppCompatActivity {
             super.onPostExecute(result);
             dialog.dismiss();
             if (result.equalsIgnoreCase("1")) {
-                Toast.makeText(RandomRank_Activity.this, "Loading Failed Try Again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Rank_Activity.this, "Loading Failed Try Again", Toast.LENGTH_SHORT).show();
                 return;
             }
             webView.loadUrl("about:blank");

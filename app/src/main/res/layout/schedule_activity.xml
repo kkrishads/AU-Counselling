@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  >
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Academic Counselling - Differently Abled Persons"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Academic Counselling - General"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Vocational Counselling"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        android:padding="5dp"/>
+
+
+    <com.google.android.gms.ads.AdView
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/b_add"
+        android:id="@+id/adView"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+</LinearLayout>

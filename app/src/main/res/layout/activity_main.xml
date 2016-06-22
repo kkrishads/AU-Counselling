@@ -15,32 +15,50 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_green_dark"
         android:text="Keep Update this application to get Latest Options." />
-
+    <ScrollView
+        android:layout_below="@+id/txt_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <Button
         android:id="@+id/btnRandom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Random Number Enquiry"
-        android:layout_below="@+id/txt_info"
+
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
         android:padding="5dp"/>
 
     <Button
-        android:id="@+id/btnCutoff"
+        android:id="@+id/btnSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Cut-Off 2015"
+        android:text="Counselling Schedules"
         android:layout_below="@+id/btnRandom"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
-        android:visibility="gone"
-        android:enabled="false"
         android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/btnRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="RANK Enquiry"
+        android:layout_below="@+id/btnSchedule"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:padding="5dp"/>
+
+
 
     <Button
         android:id="@+id/btnVacancy"
@@ -48,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Vacancy Position"
-        android:layout_below="@+id/btnCutoff"
+        android:layout_below="@+id/btnRank"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
@@ -65,6 +83,8 @@
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
         android:padding="5dp"/>
+        </RelativeLayout>
+    </ScrollView>
 
     <com.google.android.gms.ads.AdView
         ads:adSize="BANNER"
